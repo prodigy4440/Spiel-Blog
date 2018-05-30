@@ -1,5 +1,6 @@
 .DS_Store
 .idea/
 .idea/*
-Spiel-Web-iml
+Spiel-Web.iml
 target/*
+classes/*
