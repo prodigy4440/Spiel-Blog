@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
 
+@NamedQueries({
+        @NamedQuery(name = "Article.findAll", query = "select a from Article a WHERE a.id < :lastid ORDER BY a.id desc")
+})
 @Entity
 @Table(name= "article")
 public class Article implements Serializable {

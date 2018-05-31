@@ -1,5 +1,7 @@
 package com.pc.spiel.web.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -8,6 +10,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@NamedQueries({
+        @NamedQuery(name = "Comment.findAll", query = "select c from  Comment c " +
+                "where (c.article.id = :id) and (c.id < :lastid) order by c.id desc ")
+})
 @Entity
 @Table(name = "comment")
 public class Comment implements Serializable {
@@ -29,6 +35,7 @@ public class Comment implements Serializable {
     @Column(name = "message")
     private String message;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne
     @JoinColumn(name = "article_id",referencedColumnName = "id")
